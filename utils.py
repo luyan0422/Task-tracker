@@ -33,16 +33,54 @@ def delete_task(args):
         print(f"Task (ID: {task_id}) not found.")
         return
     tasks = [task for task in tasks if task["id"] != task_id]
-    save_tasks(tasks)
-    print(f"Task (ID: {task_id}) deleted successfully.")
+    arrange = input("Do you want to re-arrange the task ID? (y/n): ").strip().lower()
+    if arrange in ["yes", "y"]:
+        for i, task in enumerate(tasks):
+            task["id"] = i + 1
+        save_tasks(tasks)
+        print(f"Task (ID: {task_id}) deleted successfully and task ID re-arranged.")
+    else:
+        print(f"Task (ID: {task_id}) deleted successfully.")
 
 def list_tasks():
+    print("list all tasks:")
     tasks = load_tasks()
     if not tasks:
         print("No tasks found.")
         return
     for task in tasks:
         print(f"ID: {task['id']} - {task['name']} [{task['status']}]")
+
+def list_done():
+    print("list tasks done:")
+    tasks = load_tasks()
+    if not tasks:
+        print("No tasks found.")
+        return
+    for task in tasks:
+        if task["status"] == "done":
+            print(f"ID: {task['id']} - {task['name']} [{task['status']}]")
+
+def list_todo():
+    print("list tasks to do:")
+    tasks = load_tasks()
+    if not tasks:
+        print("No tasks found.")
+        return
+    for task in tasks:
+        if task["status"] == "todo":
+            print(f"ID: {task['id']} - {task['name']} [{task['status']}]")
+
+def list_onGoing():
+    print("list tasks on-going:")
+    tasks = load_tasks()
+    if not tasks:
+        print("No tasks found.")
+        return
+    for task in tasks:
+        if task["status"] == "on-going":
+            print(f"ID: {task['id']} - {task['name']} [{task['status']}]")
+
         
 def mark_done(args):
     task_id = int(args)
