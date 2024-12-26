@@ -1,4 +1,5 @@
 # cli-tasker
+Thsi is a [python roadmap project](https://roadmap.sh/projects/task-tracker)
 
 ## Description:
 cli-tasker is a project used to track and manage tasks.
@@ -13,3 +14,12 @@ cli-tasker can help user:
 4. List Tasks: Users can list all tasks (default) or filter them by status. The statuses available for filtering are "done", "todo", and "on-going".
 5. Mark Task as On Goning: Tasks can be marked as "on-going" by providing their ID.
 6. Mark Task as Done: Tasks can be marked as "done" by specifying their ID. After mark as done, you can choose to leave the task on the list or delete it.
+
+# How to use
+
+1. open terminal
+
+2. copy following code `$pip3 install cli-tasker`
+
+3. After install successly, you can manege your task!
+
