@@ -1,13 +1,15 @@
 import os
 import json
-
+import time
 TASK_FILE = "tasks.json"
 
 def add_task(task_name):
     task = {
         "id": generate_task_id(),
         "name": task_name,
-        "status": "todo"
+        "status": "todo",
+        "created at": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
+        "last updated at": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     }
     tasks = load_tasks()
     tasks.append(task)
@@ -21,6 +23,7 @@ def update_task(id, new_name):
     for task in tasks:
         if task["id"] == task_id:
             task["name"] = new_name
+            task["last updated at"] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
             save_tasks(tasks)
             print(f"Task (ID: {task_id}) updated successfully.")
             return
@@ -49,7 +52,9 @@ def list_tasks():
         print("No tasks found.")
         return
     for task in tasks:
-        print(f"ID: {task['id']} - {task['name']} [{task['status']}]")
+        print(f"ID: {task['id']} --- {task['name']} --- [{task['status']}]")
+        print(f"    Created at: {task['created at']}")
+        print(f"    Last updated at: {task['last updated at']}")
 
 def list_done():
     print("list tasks done:")
@@ -95,6 +100,7 @@ def mark_done(args):
                 save_tasks(tasks)
                 print(f"Task (ID: {task_id}) has been deleted.")
             else:
+                task["last updated at"] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
                 print(f"Task (ID: {task_id}) is still in the list.")
             save_tasks(tasks)
             return
@@ -108,6 +114,7 @@ def mark_onGoing(args):
     for task in tasks:
         if task["id"] == task_id:
             task["status"] = "on-going"
+            task["last updated at"] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
             save_tasks(tasks)
             print(f"Task (ID: {task_id}) marked as on-going.")
             return
