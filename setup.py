@@ -14,7 +14,7 @@ setup(
     install_requires=["tabulate"],       # 依賴項列表
     entry_points={
         "console_scripts": [
-            "cli-tasker=cli-tasker.cli:main",  # 將命令行工具綁定到 cli.py 的 main 函數
+            "cli-tasker=cli_tasker.cli:main",  # 將命令行工具綁定到 cli.py 的 main 函數
         ],
     },
     classifiers=[
