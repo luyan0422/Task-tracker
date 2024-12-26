@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="cli-tasker",                 # 包名
-    version="1.0.0",                     # 版本號
+    version="1.0.1",                     # 版本號
     author="呂佳晏",                      # 作者名
     author_email="jojojo22845@gmail.com", # 作者 Email
     description="A simple CLI task tracker",
