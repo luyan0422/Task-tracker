@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
-from utils import *
+from .utils import *
 
 def main():
     if len(sys.argv) == 2 and sys.argv[1] == "hamburger":
