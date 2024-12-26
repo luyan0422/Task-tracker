@@ -16,6 +16,7 @@ def main():
         print("delete <task_id> - Delete a task")
         print("mark-done <task_id> - Mark a task as done")
         print("mark-onGoing <task_id> - Mark a task as on-going")
+        print("mark-todo <task_id> - Mark a task as to do(default)")
         print("list - List all tasks")
         print("list done - List all done tasks")
         print("list not done - List all not done tasks")
@@ -50,6 +51,11 @@ def main():
             print("Usage: task-cli mark-onGoing <task_id>")
             return
         mark_onGoing(sys.argv[2])
+    elif command == "mark-todo":
+        if(len(sys.argv) < 3):
+            print("Usage: task-cli mark-onGoing <task_id>")
+            return
+        mark_todo(sys.argv[2])
     elif command == "list":
         if len(sys.argv) == 2:
             print("list - List all tasks")
