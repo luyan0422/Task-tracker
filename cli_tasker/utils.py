@@ -60,54 +60,32 @@ def list_tasks():
         table.append(task.values())
     print(tabulate(table, headers=table_header, tablefmt="grid"))
 
-def list_done():
-    print("list tasks done:")
+def list_status(status):
+    print(f"List all tasks with status: {status}")
     tasks = load_tasks()
     if not tasks:
         print("No tasks found.")
         return
     table = []
     for task in tasks:
-        if task["status"] == "done":
+        if task["status"] == status:
             table.append(task.values())
-    print(tabulate(table, headers=table_header, tablefmt="grid"))
-    
-def list_todo():
-    print("list tasks to do:")
-    tasks = load_tasks()
-    if not tasks:
-        print("No tasks found.")
-        return
-    table = []
-    for task in tasks:
-        if task["status"] == "todo":
-            table.append(task.values())
-    print(tabulate(table, headers=table_header, tablefmt="grid"))
-    
-def list_onGoing():
-    print("list tasks on-going:")
-    tasks = load_tasks()
-    if not tasks:
-        print("No tasks found.")
-        return
-    table = []
-    for task in tasks:
-        if task["status"] == "on-going":
-            table.append(task.values())
-    print(tabulate(table, headers=table_header, tablefmt="grid"))
+    if not table:
+        print(f"No tasks found with status: {status}")
+    else:
+        print(tabulate(table, headers=table_header, tablefmt="grid"))
             
-def mark_todo(args):
+def mark(args, status):
     task_id = int(args)
     tasks = load_tasks()
     for task in tasks:
         if task["id"] == task_id:
-            task["status"] = "todo"
+            task["status"] = status
             task["last updated at"] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
             save_tasks(tasks)
-            print(f"Task (ID: {task_id}) marked as to do.")
+            print(f"Task (ID: {task_id}) marked as {status}.")
             return
     print(f"Task (ID: {task_id}) not found.")
-    return
         
 def mark_done(args):
     task_id = int(args)
