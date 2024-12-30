@@ -14,14 +14,10 @@ def main():
         print("add ""task name"" - Add a new task")
         print("update <task_id> ""new task name"" - Update a task")
         print("delete <task_id> - Delete a task")
-        print("mark-done <task_id> - Mark a task as done")
-        print("mark-onGoing <task_id> - Mark a task as on-going")
-        print("mark-todo <task_id> - Mark a task as to do(default)")
+        print("mark <task_id> ""status"" - Mark task a user defined status")
+        print("mark-done <task_id> - Mark task as done")
         print("list - List all tasks")
-        print("list done - List all done tasks")
-        print("list not done - List all not done tasks")
-        print("list on-going - List all on-going tasks")
-        print("list <task_id> - List a specific task")
+        print("list ""status"" - List all tasks with a specific status")
         return
     
     command = sys.argv[1]
@@ -41,37 +37,24 @@ def main():
             print("Usage: task-cli delete <task_id>")
             return
         delete_task(sys.argv[2])
+    elif command == "mark":
+        if(len(sys.argv) < 4):
+            print("Usage: task-cli mark <task_id> ""status""")
+            return
+        mark(sys.argv[2],sys.argv[3])
     elif command == "mark-done":
         if(len(sys.argv) < 3):
             print("Usage: task-cli mark-done <task_id>")
             return
         mark_done(sys.argv[2])
-    elif command == "mark-onGoing":
-        if(len(sys.argv) < 3):
-            print("Usage: task-cli mark-onGoing <task_id>")
-            return
-        mark_onGoing(sys.argv[2])
-    elif command == "mark-todo":
-        if(len(sys.argv) < 3):
-            print("Usage: task-cli mark-onGoing <task_id>")
-            return
-        mark_todo(sys.argv[2])
     elif command == "list":
         if len(sys.argv) == 2:
-            print("list - List all tasks")
             list_tasks()
-        elif sys.argv[2] == "todo":
-            list_todo()
-        elif sys.argv[2] == "done":
-            list_done()
-        elif sys.argv[2] == "on-going":
-            list_onGoing()
+        elif(len(sys.argv) == 3):
+            list_status(sys.argv[2])
         else:
             print("list - List all tasks")
-            print("list done - List all done tasks")
-            print("list not done - List all not done tasks")
-            print("list on-going - List all on-going tasks")
-            print("list <task_id> - List a specific task")
+            print("list ""status"" - List all tasks with a specific status")
     else:   
         print(f"Unknown command: {command}")
 
